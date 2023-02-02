@@ -5,6 +5,7 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 const hre = require("hardhat");
+const Web3 = require("web3");
 
 async function main() {
   const currentTimestampInSeconds = Math.round(Date.now() / 1000);
@@ -12,7 +13,7 @@ async function main() {
   const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
 
   const contractAmount = hre.ethers.utils.parseEther("1");
-
+  const web3= new Web3("https://polygon-mumbai.g.alchemy.com/v2/JL2L_xxEyeGAJvNkSCeJN0c-RIDhsiof");
   const Lock = await hre.ethers.getContractFactory("websitecontract");
   const lock = await Lock.deploy(unlockTime, { value: contractAmount });
 
